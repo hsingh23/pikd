@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<head title="Text to Image to Speech">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css"
+    rel="stylesheet">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.1/jquery.fancybox.css"
+    type="text/css" media="screen" />
+    <style type="text/css">
+        img {
+            max-height: 200px;
+            max-width: 200px;
+            min-height: 200px;
+            min-width: 200px;
+        }
+    </style>
+</head>
+<body>
+	<div class="container">
+		<textarea id="pikd_input" rows="3" class="input-block-level" placeholder="Type text here to pik it!"></textarea>
+		<button id="pikd_submit" class="btn btn-success input-block-level" type="button">Go!</button>
+	</div>
+	<div class="container">
+	    <div class="row-fluid">
+	        <ul id="things" class="thumbnails">
+
+	        </ul>
+	    </div>
+	</div>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.1/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript" src="speakGenerator.js"></script>
+    <script type="text/javascript" src="speakClient.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+			var my_func = function (i) {
+				return function(data) {
+    				$.each(data.result, function(k,v){
+    					$("#cat"+i).append('<li class="span3"><div class="thumbnail"><a rel="gallery" class="fancybox" href="'+v[1][0][0]+'" title="'+v[0]+'"><img src="'+v[1][0][1]+'" alt="'+v[0]+'"></a><div class="caption">'+v[0]+'</div></div></li>')
+    				});
+				};
+			};
+        	$("#pikd_submit").click(function(){
+        		var substrings =$("#pikd_input").val().split(/[\.\?!,:;] /); 
+        		$("#things").empty();
+        		for (var a =0; a< substrings.length; a++){
+        			$("#things").append('<span id="cat'+a+'"></span>');
+        			$.getJSON("http://larg.herokuapp.com/full-api/?query="+substrings[a]+"&callback=?", my_func(a));
+        		}
+        		// console.log(substrings);
+        		return false;
+        	});
+            $(".fancybox").fancybox({
+                "openEffect": "none",
+                "closeEffect": "none",
+                "beforeLoad": function () {
+                    this.title = $(this.element).find("img").attr("alt");
+                },
+                "helpers": {
+                    title: {
+                        type: "outside"
+                    }
+                },
+                "afterLoad": function (current, previous) {
+                    console.info(current.title);
+                    speak(current.title);
+                }
+            });
+        });
+    </script>
+    <div id="audio"></div>
+</body>
+</html>
