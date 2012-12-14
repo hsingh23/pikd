@@ -43,6 +43,7 @@
         		$("#galleria").empty();
         		for (var a =0; a< substrings.length; a++){
         			$("#galleria").append('<span id="cat'+a+'"></span>');
+                    // $.getJSON("http://localhost:8000/full-api/?query="+substrings[a]+"&callback=?", my_func(a));
         			$.getJSON("http://larg.herokuapp.com/full-api/?query="+substrings[a]+"&callback=?", my_func(a));
         		}
         		// console.log(substrings);
