@@ -34,7 +34,7 @@
 			var my_func = function (i) {
 				return function(data) {
     				$.each(data.result, function(k,v){
-                        if (v.length !==0 && v[1].length !==0){           
+                        if (v !== null && v.length !==0 && v[1] !== null && v[1].length !==0){           
         					$("#cat"+i).append('<a rel="gallery" class="fancybox" href="'+v[1][0][0]+'" alt="'+v[0]+'"><img src="'+v[1][0][1]+'" data-title="'+v[0]+'" alt="'+v[0]+'"></a>');
                         }
                         else {
@@ -44,14 +44,18 @@
 				};
 			};
         	$("#pikd_submit").click(function(){
-                var substrings =$("#pikd_input").val().split(/[.\?!,:;\n\t\r-][ \n\t\r]/); 
+                var substrings =$("#pikd_input").val().replace(/[^A-z0-9 \n\t\r,!:;\?.]/g,"").split(/(?:[.\?!,:;\n\t\r-][ \n\t\r])/); 
         		$("#galleria").empty();
                 console.log(substrings);
         		for (var a =0; a< substrings.length; a++){
                     if (substrings[a] != ""){
             			$("#galleria").append('<span id="cat'+a+'"></span>');
-                        // $.getJSON("http://localhost:8000/full-api/?query="+substrings[a]+"&callback=?", my_func(a));
-                        $.getJSON("http://larg.herokuapp.com/full-api/?query="+substrings[a]+"&callback=?", my_func(a));
+                        if (window.location.hostname === "localhost"){
+                            $.getJSON("http://localhost:8000/full-api/?query="+encodeURIComponent(substrings[a].trim())+"&callback=?", my_func(a));
+                        }
+                        else {
+                            $.getJSON("http://larg.herokuapp.com/full-api/?query="+encodeURIComponent(substrings[a].trim())+"&callback=?", my_func(a));
+                        }
                     }
         		}
         		// console.log(substrings);
