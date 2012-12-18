@@ -32,19 +32,24 @@
     <script type="text/javascript" src="speakClient.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-			var my_func = function (i) {
+			var closure_for_getJSON = function (i) {
 				return function(data) {
+                    // console.log(data);
     				$.each(data.result, function(k,v){
-    					$("#cat"+i).append('<li class="span3"><div class="thumbnail"><a rel="gallery" class="fancybox" href="'+v[1][0][0]+'" title="'+v[0]+'"><img src="'+v[1][0][1]+'" alt="'+v[0]+'"></a><div class="caption">'+v[0]+'</div></div></li>')
+    					$("#cat"+i).append('<li class="span3"><div class="yo"><a rel="gallery" class="fancybox" href="'+(v[1] && v[1][0] && v[1][0][0])? v[1][0][0]:""+'" title="'+v[0]+'"><img src="'+ (v[1] && v[1][0] && v[1][0][1]) ? v[1][0][1] : "" +'" alt="'+(v[0])?v[0]:i+'"></a><div class="caption">'+(v[0])?v[0]:i+'</div></div></li>');
     				});
 				};
 			};
         	$("#pikd_submit").click(function(){
-        		var substrings =$("#pikd_input").val().split(/[\.\?!,:;] /); 
+                // var a = $("#pikd_input").val().replace(/[\n\t\r]/,)
+        		var substrings =$("#pikd_input").val().split(/[.\?!,:;\n\t\r-][ \n\t\r]/); 
+                // console.log(substrings);
         		$("#things").empty();
         		for (var a =0; a< substrings.length; a++){
-        			$("#things").append('<span id="cat'+a+'"></span>');
-        			$.getJSON("http://larg.herokuapp.com/full-api/?query="+substrings[a]+"&callback=?", my_func(a));
+                    if (substrings[a] != ""){
+                        $("#things").append('<span id="cat'+a+'"></span>');
+                        $.getJSON("http://localhost:8000/full-api/?query="+substrings[a]+"&callback=?", closure_for_getJSON(a));
+                    }
         		}
         		// console.log(substrings);
         		return false;
@@ -61,7 +66,7 @@
                     }
                 },
                 "afterLoad": function (current, previous) {
-                    console.info(current.title);
+                    // console.info(current.title);
                     speak(current.title);
                 }
             });
