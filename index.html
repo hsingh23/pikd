@@ -31,6 +31,10 @@
     <script type="text/javascript" src="speakClient.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
+            function getUrlVar(key){
+                var result = new RegExp(key + "=([^&]*)", "i").exec(window.location.search); 
+                return result && result[1] || ""; 
+            }
 			var my_func = function (i) {
 				return function(data) {
     				$.each(data.result, function(k,v){
@@ -51,10 +55,20 @@
                     if (substrings[a] != ""){
             			$("#galleria").append('<span id="cat'+a+'"></span>');
                         if (window.location.hostname === "localhost"){
-                            $.getJSON("http://localhost:8000/full-api/?query="+encodeURIComponent(substrings[a].trim())+"&callback=?", my_func(a));
+                            if (getUrlVar("nsfw")!==""){
+                                $.getJSON("http://localhost:8000/full-api-unfiltered/?query="+encodeURIComponent(substrings[a].trim())+"&callback=?", my_func(a));
+                            }
+                            else{
+                                $.getJSON("http://localhost:8000/full-api/?query="+encodeURIComponent(substrings[a].trim())+"&callback=?", my_func(a));
+                            }
                         }
                         else {
-                            $.getJSON("http://larg.herokuapp.com/full-api/?query="+encodeURIComponent(substrings[a].trim())+"&callback=?", my_func(a));
+                            if (getUrlVar("nsfw")!==""){
+                                $.getJSON("http://larg.herokuapp.com/full-api-unfiltered/?query="+encodeURIComponent(substrings[a].trim())+"&callback=?", my_func(a));
+                            }
+                            else{
+                                $.getJSON("http://larg.herokuapp.com/full-api/?query="+encodeURIComponent(substrings[a].trim())+"&callback=?", my_func(a));
+                            }
                         }
                     }
         		}
