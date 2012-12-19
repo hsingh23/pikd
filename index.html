@@ -66,10 +66,10 @@
                         }
                         else {
                             if (getUrlVar("nsfw")!==""){
-                                $.getJSON("http://larg.herokuapp.com/full-api-unfiltered/?query="+encodeURIComponent(substrings[a].trim())+"&callback=?", my_func(a));
+                                $.getJSON("http://larg"+Math.floor(Math.random()*10)+".herokuapp.com/full-api-unfiltered/?query="+encodeURIComponent(substrings[a].trim())+"&callback=?", my_func(a));
                             }
                             else{
-                                $.getJSON("http://larg.herokuapp.com/full-api/?query="+encodeURIComponent(substrings[a].trim())+"&callback=?", my_func(a));
+                                $.getJSON("http://larg"+Math.floor(Math.random()*10)+".herokuapp.com/full-api/?query="+encodeURIComponent(substrings[a].trim())+"&callback=?", my_func(a));
                             }
                         }
                     }
