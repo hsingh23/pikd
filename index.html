@@ -81,7 +81,7 @@
         					$("#cat"+i).append('<a rel="gallery" class="fancybox" href="'+v[1][0][0]+'" alt="'+v[0]+'"><img src="'+v[1][0][1]+'" data-title="'+v[0]+'" alt="'+v[0]+'"></a>');
                         }
                         else {
-                            console.log(i, v);
+                            // console.log(i, v);
                         }
     				});
 				};
@@ -89,7 +89,7 @@
         	$("#pikd_submit").click(function(){
                 var substrings =$("#pikd_input").val().replace(/[^A-z0-9 \n\t\r,!:;\?.]/g,"").split(/(?:[.\?!,:;\n\t\r-][ \n\t\r])/); 
         		$("#galleria").empty();
-                console.log(substrings);
+                // console.log(substrings);
         		for (var a =0; a< substrings.length; a++){
                     if (substrings[a] != ""){
             			$("#galleria").append('<span id="cat'+a+'"></span>');
@@ -110,7 +110,7 @@
 			    "imageCrop": true,
 			    "transition": 'fade'
 			});
-    	    if (Galleria) { console.log("Galleria works!!!");}
+    	    // if (Galleria) { console.log("Galleria works!!!");}
             $(".fancybox").fancybox({
                 "openEffect": "none",
                 "closeEffect": "none",
