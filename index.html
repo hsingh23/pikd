@@ -15,63 +15,78 @@
             min-width: 200px;
         }
         body{
-            padding-top: 60px; 
+            padding-top: 30px; 
         }
     </style>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="#">Pikd</a>
-          <div class="nav-collapse collapse">
-            <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
-	<div class="container">
-<!--         <label class="checkbox inline"><input id="cat" type="checkbox" value="cat"> Cats</label>
-        <label class="checkbox inline"><input id="dog" type="checkbox" value="dog"> Dogs</label>
-        <label class="checkbox inline"><input id="dirty" type="checkbox" value="dirty"> NSFW</label>
-        <label class="checkbox inline"><input id="super-dirty" type="checkbox" value="super-dirty"> NSFW and make it dirty</label> -->
-        <!-- <form class="form-inline"> -->
-            <select id="special" class="input-block-level">
-              <option data="n">Normal</option>
-              <option data="c">Cats</option>
-              <option data="d">Dogs</option>
-              <option data="x">NSFW</option>
-              <option data="xc">NSFW Cats</option>
-              <option data="xd">NSFW Dogs</option>
-              <option data="xx">NSFW Dirty</option>
-            </select>
-<!--             <label class="checkbox inline">
-              <input type="checkbox" id="nsfw" value="nsfw"> NSFW
-            </label> -->
-        <!-- </form> -->
 
-		<textarea id="pikd_input" rows="3" class="input-block-level" placeholder="1) Select Type of Result. 2) Type in text and hit Go! 3) Once results are loaded, click on image to see a bigger version. Use arrow keys to navigate the page."></textarea>
-		<button id="pikd_submit" class="btn btn-success input-block-level" type="button">Go!</button>
-	</div>
-	<div class="container">
-	    <div class="row-fluid">
-	        <div id="galleria"></div>
-	    </div>
-	</div>
+    <div class="tabbable tabs-left">
+          <ul class="nav nav-tabs">
+            <li class="active"><a href="#home" data-toggle="tab">Pikd</a></li>
+            <li><a href="#about" data-toggle="tab">About</a></li>
+            <li><a href="#contact" data-toggle="tab">Contact</a></li>
+            <li><a href="#donate" data-toggle="tab">Donate</a></li>
+            <li><a href="#disclaimer" data-toggle="tab">Disclaimer</a></li>
+          </ul>
+        <div class="tab-content">
+            <div class="tab-pane" id="about">
+                <div class="container">
+                    <p>This website if an interface on text. It analyzes every word to see its part of speech and if it turns out to be a noun, verb, or adjactive, it searches that term and pulls that result into your webbrowser. What is created is stream of images that represent the text. </p>
+                </div>
+            </div>
+            <div class="tab-pane" id="contact">
+                <div class="container">
+                    <p>Gmail is where it's at. Use pikd.root to get a hold of me. yes there is a "." in there. Please no complaints on copyright. Only constructive criticism if you have something negative. If you want to help me improve the website, make the subject read "PIKD Contribute"</p>
+                </div>
+            </div>
+            <div class="tab-pane" id="disclaimer">
+                <div class="container">
+                    <p>This website is for educational use only. If I violate any copyright or display any inappropriate images, I appologize, I can't fully control what the search results will yield. Use at your own risk.</p>
+                </div>
+            </div>
+            <div class="tab-pane" id="donate">
+                <div class="container">          
+                    <p>Do you want this on the android app store? Do you want it to get better results? Do you have suggestions to make this website kick ass? Well, I sure do. Your donations help me live a better life. Even 1$ makes a difference. I've attached a link to paypal. If you can't donate, contact me via the contact form and tell me something cool.</p>
+                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                        <input type="hidden" name="cmd" value="_s-xclick">
+                        <input type="hidden" name="hosted_button_id" value="CVKLKC8UC4RXY">
+                        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                    </form>
+                </div>
+            </div>
+            <div class="tab-pane active" id="home">
+                <div class="container">
+                    <select id="special" class="input-block-level">
+                      <option data="n">Normal</option>
+                      <option data="c">Cats</option>
+                      <option data="d">Dogs</option>
+                      <option data="x">NSFW</option>
+                      <option data="xc">NSFW Cats</option>
+                      <option data="xd">NSFW Dogs</option>
+                      <option data="xx">NSFW Dirty</option>
+                    </select>
+                    <textarea id="pikd_input" rows="3" class="input-block-level" placeholder="1) Select Type of Result. 2) Type in text and hit Go! 3) Once results are loaded, click on image to see a bigger version. Use arrow keys to navigate the page."></textarea>
+                    <button id="pikd_submit" class="btn btn-success input-block-level" type="button">Go!</button>
+                </div>
+                <div class="container">
+                    <div class="row-fluid">
+                        <div id="galleria"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
     <script type="text/javascript" src="galleria-1.2.8.min.js"></script>
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.1/jquery.fancybox.pack.js"></script>
     <script type="text/javascript" src="speakGenerator.js"></script>
     <script type="text/javascript" src="speakClient.js"></script>
+    <script type="text/javascript" src="bootstrap.min.js"></script>
+    <script type="text/javascript">var switchTo5x=true;</script>
+    <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+    <script type="text/javascript" src="http://s.sharethis.com/loader.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
 			var my_func = function (i) {
@@ -128,6 +143,11 @@
                 }
             });
         });
+    </script>
+    <script type="text/javascript">stLight.options({publisher: "ur-fb28d8d2-eb99-1e98-776-60b66420bcef"});</script>
+    <script>
+    var options={ "publisher": "ur-fb28d8d2-eb99-1e98-776-60b66420bcef", "position": "right", "ad": { "visible": false, "openDelay": 5, "closeDelay": 0}, "chicklets": { "items": ["facebook", "reddit", "stumbleupon", "twitter", "googleplus", "linkedin", "email"]}};
+    var st_hover_widget = new sharethis.widgets.hoverbuttons(options);
     </script>
     <div id="audio"></div>
 </body>
