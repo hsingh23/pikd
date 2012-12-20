@@ -14,11 +14,52 @@
             min-height: 200px;
             min-width: 200px;
         }
+        body{
+            padding-top: 60px; 
+        }
     </style>
 </head>
 <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">Pikd</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
 	<div class="container">
-		<textarea id="pikd_input" rows="3" class="input-block-level" placeholder="Type text here to pik it!"></textarea>
+<!--         <label class="checkbox inline"><input id="cat" type="checkbox" value="cat"> Cats</label>
+        <label class="checkbox inline"><input id="dog" type="checkbox" value="dog"> Dogs</label>
+        <label class="checkbox inline"><input id="dirty" type="checkbox" value="dirty"> NSFW</label>
+        <label class="checkbox inline"><input id="super-dirty" type="checkbox" value="super-dirty"> NSFW and make it dirty</label> -->
+        <!-- <form class="form-inline"> -->
+            <select id="special" class="input-block-level">
+              <option data="n">Normal</option>
+              <option data="c">Cats</option>
+              <option data="d">Dogs</option>
+              <option data="x">NSFW</option>
+              <option data="xc">NSFW Cats</option>
+              <option data="xd">NSFW Dogs</option>
+              <option data="xx">NSFW Dirty</option>
+            </select>
+<!--             <label class="checkbox inline">
+              <input type="checkbox" id="nsfw" value="nsfw"> NSFW
+            </label> -->
+        <!-- </form> -->
+
+		<textarea id="pikd_input" rows="3" class="input-block-level" placeholder="1) Select Type of Result. 2) Type in text and hit Go! 3) Once results are loaded, click on image to see a bigger version. Use arrow keys to navigate the page."></textarea>
 		<button id="pikd_submit" class="btn btn-success input-block-level" type="button">Go!</button>
 	</div>
 	<div class="container">
@@ -33,10 +74,6 @@
     <script type="text/javascript" src="speakClient.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            function getUrlVar(key){
-                var result = new RegExp(key + "=([^&]*)", "i").exec(window.location.search); 
-                return result && result[1] || ""; 
-            }
 			var my_func = function (i) {
 				return function(data) {
     				$.each(data.result, function(k,v){
@@ -56,25 +93,15 @@
         		for (var a =0; a< substrings.length; a++){
                     if (substrings[a] != ""){
             			$("#galleria").append('<span id="cat'+a+'"></span>');
+                        var special = "&s="+$("#special").find(":selected").attr("data");
                         if (window.location.hostname === "localhost"){
-                            if (getUrlVar("nsfw")!==""){
-                                $.getJSON("http://localhost:8000/full-api-unfiltered/?query="+encodeURIComponent(substrings[a].trim())+"&callback=?", my_func(a));
-                            }
-                            else{
-                                $.getJSON("http://localhost:8000/full-api/?query="+encodeURIComponent(substrings[a].trim())+"&callback=?", my_func(a));
-                            }
+                            $.getJSON("http://localhost:8000/full-api/?query="+encodeURIComponent(substrings[a].trim())+special+"&callback=?", my_func(a));    
                         }
                         else {
-                            if (getUrlVar("nsfw")!==""){
-                                $.getJSON("http://larg"+Math.floor(Math.random()*10)+".herokuapp.com/full-api-unfiltered/?query="+encodeURIComponent(substrings[a].trim())+"&callback=?", my_func(a));
-                            }
-                            else{
-                                $.getJSON("http://larg"+Math.floor(Math.random()*10)+".herokuapp.com/full-api/?query="+encodeURIComponent(substrings[a].trim())+"&callback=?", my_func(a));
-                            }
+                            $.getJSON("http://larg"+Math.floor(Math.random()*10)+".herokuapp.com/full-api/?query="+encodeURIComponent(substrings[a].trim())+special+"&callback=?", my_func(a));
                         }
                     }
         		}
-        		// console.log(substrings);
         		return false;
         	});
     	    Galleria.loadTheme('/themes/classic/galleria.classic.min.js');
