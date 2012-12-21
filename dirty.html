@@ -42,7 +42,7 @@
         <div class="tab-pane" id="about">
             <div class="container">
                 <p>Introducing Pikd, a TIS [Text, Image, and speech] converter that takes plain old text 
-and turns it into an interactive slideshow of images and sound. Pikd is an interface on text. 
+and turns it into an interactive slideshow of images and sound.
 </p><p>
 Motivations: There are many ways to experience information. Society for the most part 
 has mainly encouraged text as a way of conveying information. This way of conveying 
@@ -81,18 +81,34 @@ said out loud also aids memory because more the senses are engaged. Pikd tries t
             <div class="container">
                 <select id="special" class="input-block-level">
                   <option data="n">Normal</option>
+                  <option data="a">Anime</option>
+                  <option data="a">Art</option>
                   <option data="c">Cats</option>
+                  <option data="s">Christmas</option>
                   <option data="d">Dogs</option>
+                  <option data="g">Gifs</option>
+                  <option data="m">Movies</option>
+                  <option data="y">Symbol</option>
+
                   <option data="x">Unfiltered Search</option>
+
+                  <option data="xa">Art [unfiltered]</option>
                   <option data="xc">Cats [unfiltered]</option>
+                  <option data="xs">Christmas [unfiltered]</option>
                   <option data="xd">Dogs [unfiltered]</option>
-                  <option selected="" data="xx">Dirty [unfiltered]</option>
+                  <option data="xg">Gifs [unfiltered]</option>
+                  <option data="xm">Movies [unfiltered]</option>
+                  <option data="xy">Symbol [unfiltered]</option>
+
+            
+                  <!-- You decided to look at the source and you found something dirty. You decide if you want to use it -->
+                  <!-- If you do want to use it try dirty.html -->
+                  <!-- <option data="xx" selected="">Make it Dirty [unfiltered]</option> -->
                 </select>
                 <textarea id="pikd_input" rows="3" class="input-block-level" placeholder="Turn your text into an image slideshow. 1) Select Type of Result. 2) Type in text (any text) in this box and hit Go! 3) Once results are loaded, click on image to see a bigger version. Use arrow keys to navigate the page."></textarea>
                 <button id="pikd_submit" class="btn btn-success input-block-level" type="button">Go!</button>
             </div>
             <div class="container">
-                <p><strong>Notice the new dirty option in the select menu? Yea you might want to be in an incognito window / (private browsing session) for this one.</strong></p>
                 <p>Please Note: It make take a <strong>few seconds</strong> to get all images. Once images are loaded you can click on them and use your <strong>arrow keys</strong> to make it slideshow your result. Some images may be <strong>broken</strong> and just wont load. I'm trying to fix that. You can escape out and try finding the image you were just on, and try skipping that image. Some images may be <strong>NSFW</strong> - I try my best to filter it. If you find one contact me via email in contact tab, and I'll add a rule to change it. Very few links may be from malware websites. Please contact me via email and I'll remove them ASAP. <strong>Please share/upvote this website!</strong> It gets faster the more people use it due to better cache hits.</p>
                 <p id="sample"><strong>Sample Input:</strong>A Story [Alice in wonderland] http://www.cs.cmu.edu/~rgs/alice-table.html
 Alice was beginning to get very tired of sitting by her sister on the bank, and of having nothing to do: once or twice she had peeped into the book her sister was reading, but it had no pictures or conversations in it, `and what is the use of a book,' thought Alice `without pictures or conversation?'
@@ -115,75 +131,8 @@ There was nothing so very remarkable in that; nor did Alice think it so very muc
 <script type="text/javascript">var switchTo5x=true;</script>
 <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
 <script type="text/javascript">stLight.options({publisher: "ur-8efbf2c4-1f89-7150-595a-21f24f522a78"});</script>
-<!--
-<script type="text/javascript">var switchTo5x=true;</script>
-<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
-<script type="text/javascript" src="http://s.sharethis.com/loader.js"></script>
--->
-<script type="text/javascript">
-    $(document).ready(function () {
-		var my_func = function (i) {
-			return function(data) {
-				$.each(data.result, function(k,v){
-                    if (v !== null && v.length !==0 && v[1] !== null && v[1].length !==0){           
-    					$("#cat"+i).append('<a rel="gallery" class="fancybox" href="'+v[1][0][0]+'" alt="'+v[0]+'"><img src="'+v[1][0][1]+'" data-title="'+v[0]+'" alt="'+v[0]+'"></a>');
-                    }
-                    // else {
-                    //     // console.log(i, v);
-                    // }
-				});
-			};
-		};
-    	$("#pikd_submit").click(function(){
-            var substrings =$("#pikd_input").val().replace(/[^A-z0-9 \n\t\r,!:;\?.]/g,"").split(/(?:[.\?!,:;\n\t\r-][ \n\t\r])/); 
-    		$("#galleria").empty();
-            // console.log(substrings);
-    		for (var a =0; a< substrings.length; a++){
-                if (substrings[a] != ""){
-        			$("#galleria").append('<span id="cat'+a+'"></span>');
-                    var special = "&s="+$("#special").find(":selected").attr("data");
-                    if (window.location.hostname === "localhost"){
-                        $.getJSON("http://localhost:8000/full-api/?query="+encodeURIComponent(substrings[a].trim())+special+"&callback=?", my_func(a));    
-                    }
-                    else {
-                        $.getJSON("http://larg"+Math.floor(Math.random()*10)+".herokuapp.com/full-api/?query="+encodeURIComponent(substrings[a].trim())+special+"&callback=?", my_func(a));
-                    }
-                }
-    		}
-    		return false;
-    	});
-	    Galleria.loadTheme('/themes/classic/galleria.classic.min.js');
-		Galleria.run('#galleria');
-	    Galleria.configure({
-		    "imageCrop": true,
-		    "transition": 'fade'
-		});
-	    // if (Galleria) { console.log("Galleria works!!!");}
-        $(".fancybox").fancybox({
-            "openEffect": "none",
-            "closeEffect": "none",
-            "beforeLoad": function () {
-                this.title = $(this.element).find("img").attr("alt");
-            },
-            "helpers": {
-                title: {
-                    type: "outside"
-                }
-            },
-            "afterLoad": function (current, previous) {
-                // console.info(current.title);
-                speak(current.title);
-            }
-        });
-    });
-</script>
-<!--
-<script type="text/javascript">stLight.options({publisher: "ur-fb28d8d2-eb99-1e98-776-60b66420bcef"});</script>
-<script>
-var options={ "publisher": "ur-fb28d8d2-eb99-1e98-776-60b66420bcef", "position": "right", "ad": { "visible": false, "openDelay": 5, "closeDelay": 0}, "chicklets": { "items": ["facebook", "reddit", "stumbleupon", "twitter", "googleplus", "linkedin", "email"]}};
-var st_hover_widget = new sharethis.widgets.hoverbuttons(options);
-</script>
--->
+<script type="text/javascript" src="pro.js"></script>
+
 <script type="text/javascript">
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-37143745-1']);
