@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <head title="Text to Image to Speech">
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css"
-    rel="stylesheet">
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.1/jquery.fancybox.css"
-    type="text/css" media="screen" />
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.1/jquery.fancybox.css" type="text/css" media="screen" /> 
+    <link rel="stylesheet" href="/jquery.fancybox-thumbs.css" type="text/css" media="screen" />
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <style type="text/css">
@@ -81,7 +80,7 @@ said out loud also aids memory because more the senses are engaged. Pikd tries t
             <div class="container">
                 <select id="special" class="input-block-level">
                   <option data="n">Normal</option>
-                  <option data="n">Anime</option>
+                  <option data="i">Anime</option>
                   <option data="a">Art</option>
                   <option data="c">Cats</option>
                   <option data="s">Christmas</option>
@@ -109,27 +108,14 @@ There was nothing so very remarkable in that; nor did Alice think it so very muc
     </div>
 </div>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
-<script type="text/javascript" src="galleria-1.2.8.min.js"></script>
+<script type="text/javascript" src="/galleria-1.2.8.min.js"></script>
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.1/jquery.fancybox.pack.js"></script>
-<script type="text/javascript" src="speakGenerator.js"></script>
-<script type="text/javascript" src="speakClient.js"></script>
-<script type="text/javascript" src="bootstrap.min.js"></script>
-<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="/jquery.fancybox-thumbs.js"></script>
+<script type="text/javascript" src="/speakGenerator.js"></script>
+<script type="text/javascript" src="/speakClient.js"></script>
+<script type="text/javascript" src="/bootstrap.min.js"></script>
+<script type="text/javascript" src="/pro.js"></script>
 <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
-<script type="text/javascript">stLight.options({publisher: "ur-8efbf2c4-1f89-7150-595a-21f24f522a78"});</script>
-<script type="text/javascript" src="pro.js"></script>
-
-<script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-37143745-1']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-</script>
 <div id="audio"></div>
 </body>
 </html>
