@@ -7,12 +7,12 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <style type="text/css">
-        img {
+/*        img {
             max-height: 200px;
             max-width: 200px;
             min-height: 200px;
             min-width: 200px;
-        }
+        }*/
         body{
             padding-top: 20px; 
         }
@@ -76,33 +76,37 @@ said out loud also aids memory because more the senses are engaged. Pikd tries t
                 </form>
             </div>
         </div>
+<!--         <div class="tab-pane" id="thumbnails">
+            <div class="container">          
+                <div class="row-fluid">
+                    <div id="galleria"></div>
+                </div>
+            </div>
+        </div> -->
         <div class="tab-pane active" id="home">
             <div class="container">
+                <textarea id="pikd_input" rows="4" class="input-block-level" placeholder="Enter Text and hit Go to turn your text into an image slideshow!" value="Alice was beginning to get very tired of sitting by her sister on the bank, and of having nothing to do: once or twice she had peeped into the book her sister was reading, but it had no pictures or conversations in it, and what is the use of a book, thought Alice without pictures or conversation? "></textarea>
+                <!-- So she was considering in her own mind (as well as she could, for the hot day made her feel very sleepy and stupid), whether the pleasure of making a daisy-chain would be worth the trouble of getting up and picking the daisies, when suddenly a White Rabbit with pink eyes ran close by her. There was nothing so very remarkable in that; nor did Alice think it so very much out of the way to hear the Rabbit say to itself, `Oh dear! Oh dear! I shall be late!' (when she thought it over afterwards, it occurred to her that she ought to have wondered at this, but at the time it all seemed quite natural); but when the Rabbit actually took a watch out of its waistcoat-pocket, and looked at it, and then hurried on, Alice started to her feet, for it flashed across her mind that she had never before seen a rabbit with either a waistcoat-pocket, or a watch to take out of it, and burning with curiosity, she ran across the field after it, and fortunately was just in time to see it pop down a large rabbit-hole under the hedge. -->
                 <select id="special" class="input-block-level">
-                  <option data="n">Normal</option>
+                  <option data="n" selected="">Normal</option>
+                  <option data="g">Gifs</option>
                   <option data="i">Anime</option>
                   <option data="a">Art</option>
                   <option data="c">Cats</option>
                   <option data="s">Christmas</option>
                   <option data="d">Dogs</option>
-                  <option data="g" selected="">Gifs</option>
                   <option data="m">Movies</option>
                   <option data="y">Symbol</option>            
                   <!-- You decided to look at the source and you found something dirty. You decide if you want to use it go to /dirty.html -->
                 </select>
-                <textarea id="pikd_input" rows="3" class="input-block-level" placeholder="Turn your text into an image slideshow. 1) Select Type of Result. 2) Type in text (any text) in this box and hit Go! 3) Once results are loaded, click on image to see a bigger version. Use arrow keys to navigate the page."></textarea>
                 <button id="pikd_submit" class="btn btn-success input-block-level" type="button">Go!</button>
             </div>
             <div class="container">
-                <p><strong>Please Note: In a few seconds your images will be here! Click the first one to go into slideshow mode.Please share/upvote this website! It gets faster the more people use it due to better cache hits.</strong></p>
-                <p id="sample"><strong>Sample Input:</strong>[Alice in wonderland] Alice was beginning to get very tired of sitting by her sister on the bank, and of having nothing to do: once or twice she had peeped into the book her sister was reading, but it had no pictures or conversations in it, `and what is the use of a book,' thought Alice `without pictures or conversation?'
-So she was considering in her own mind (as well as she could, for the hot day made her feel very sleepy and stupid), whether the pleasure of making a daisy-chain would be worth the trouble of getting up and picking the daisies, when suddenly a White Rabbit with pink eyes ran close by her.
-
-There was nothing so very remarkable in that; nor did Alice think it so very much out of the way to hear the Rabbit say to itself, `Oh dear! Oh dear! I shall be late!' (when she thought it over afterwards, it occurred to her that she ought to have wondered at this, but at the time it all seemed quite natural); but when the Rabbit actually took a watch out of its waistcoat-pocket, and looked at it, and then hurried on, Alice started to her feet, for it flashed across her mind that she had never before seen a rabbit with either a waistcoat-pocket, or a watch to take out of it, and burning with curiosity, she ran across the field after it, and fortunately was just in time to see it pop down a large rabbit-hole under the hedge.</p>
+                <p><strong>Please Note: In a few seconds your images will be here! Click the first one to go into slideshow mode. Please share/upvote this website! It gets faster the more people use it due to better cache hits.</strong></p>
                 <div class="row-fluid">
                     <div id="galleria"></div>
                 </div>
-                <p>Some images may be <strong>broken.</strong> I'm trying to fix that. You can escape out and try finding the image you were just on, and try skipping that image. Some images may be <strong>NSFW</strong> - I try my best to filter it. If you find one contact me via email in contact tab, and I'll add a rule to change it. Very few links may be from malware websites. Please contact me via email and I'll remove them ASAP.</p>
+                <!-- <p>Some images may be <strong>broken.</strong> I'm trying to fix that. You can escape out and try finding the image you were just on, and try skipping that image. Some images may be <strong>NSFW</strong> - I try my best to filter it. If you find one contact me via email in contact tab, and I'll add a rule to change it. Very few links may be from malware websites. Please contact me via email and I'll remove them ASAP.</p> -->
             </div>
         </div>
     </div>
